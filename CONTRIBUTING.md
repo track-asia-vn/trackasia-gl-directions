@@ -4,19 +4,19 @@
 
 You'll need a [Mapbox access token](https://www.mapbox.com/help/create-api-access-token/) stored in localstorage. Set it via
 
-    localStorage.setItem('MapboxAccessToken', '<YOUR ACCESS TOKEN>');
+    localStorage.setItem('TrackAsiaAccessToken', '<YOUR ACCESS TOKEN>');
 
 ### Testing
 
-Tests require an MapboxAccessToken env variable to be set.
+Tests require an TrackAsiaAccessToken env variable to be set.
 
-    export MapboxAccessToken=<YOUR ACCESS TOKEN> && npm test
+    export TrackAsiaAccessToken=<YOUR ACCESS TOKEN> && npm test
 
 ### Release process
 
 1. `git checkout master`
 1. `git pull --rebase --autostash` to ensure you have the latest changes.
-1. `export MapboxAccessToken=<YOUR ACCESS TOKEN> && npm test`
+1. `export TrackAsiaAccessToken=<YOUR ACCESS TOKEN> && npm test`
 1. Update [`CHANGELOG.md`](https://github.com/mapbox/mapbox-gl-directions/blob/master/CHANGELOG.md)
 1. `npm version {major|minor|patch}`
 1. Create a release branch off of master that updates `CHANGELOG.md` and increments `package.json`.

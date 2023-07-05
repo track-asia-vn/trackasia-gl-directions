@@ -8,9 +8,9 @@ test('Directions#option', tt => {
 
   function setup(opts) {
     container = document.createElement('div');
-    map = new mapboxgl.Map({ container: container });
-    var MapboxDirections = require('..');
-    directions = new MapboxDirections(opts);
+    map = new trackasiagl.Map({ container: container });
+    var TrackAsiaDirections = require('..');
+    directions = new TrackAsiaDirections(opts);
     map.addControl(directions);
   }
 

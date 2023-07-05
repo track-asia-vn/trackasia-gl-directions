@@ -1,3 +1,3 @@
-import MapboxDirections from './directions';
+import TrackAsiaDirections from './directions';
 
-module.exports = MapboxDirections;
+module.exports = TrackAsiaDirections;

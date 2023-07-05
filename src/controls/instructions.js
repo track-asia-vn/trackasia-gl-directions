@@ -12,7 +12,7 @@ let errorTemplate = template(fs.readFileSync(__dirname + '/../templates/error.ht
  * @param {HTMLElement} el Summary parent container
  * @param {Object} store A redux store
  * @param {Object} actions Actions an element can dispatch
- * @param {Object} map The mapboxgl instance
+ * @param {Object} map The trackasiagl instance
  * @private
  */
 export default class Instructions {

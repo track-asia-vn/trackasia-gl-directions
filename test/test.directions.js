@@ -2,20 +2,20 @@
 
 const test = require('tape');
 const once = require('lodash.once');
-const MapboxDirections = require('..');
+const TrackAsiaDirections = require('..');
 
 function setup() {
   var container = document.createElement('div');
-  var map = new mapboxgl.Map({ container: container, style: {
-  "version": 8,
-  "sources": {
+  var map = new trackasiagl.Map({ container: container, style: {
+  'version': 8,
+  'sources': {
   },
-  "glyphs": "local://glyphs/{fontstack}/{range}.pbf",
-  "layers": [
+  'glyphs': 'local://glyphs/{fontstack}/{range}.pbf',
+  'layers': [
       {
-          "id": "background", "type": "background",
-          "paint": {
-              "background-color": "#fff"
+          'id': 'background', 'type': 'background',
+          'paint': {
+              'background-color': '#fff'
           }
       }] }});
 
@@ -25,7 +25,7 @@ function setup() {
 test('directions', (tt) => {
   tt.test('initialized', t => {
     var map = setup();
-    var directions = new MapboxDirections();
+    var directions = new TrackAsiaDirections();
     map.addControl(directions);
 
     t.ok(directions, 'directions is initialized');
@@ -35,7 +35,7 @@ test('directions', (tt) => {
   tt.test('set/get inputs', t => {
     var map = setup();
 
-    var directions = new MapboxDirections({
+    var directions = new TrackAsiaDirections({
       geocoder: {
         proximity: [-79.45, 43.65]
       }
@@ -86,7 +86,7 @@ test('Directions with custom styles', t => {
       'line-width': 4
     }
   };
-  var directions = new MapboxDirections({
+  var directions = new TrackAsiaDirections({
     styles: [customLayer]
   });
   t.ok(map.addControl(directions));
@@ -101,7 +101,7 @@ test('Directions with custom styles', t => {
 
 test('Directions#onRemove', t => {
   var map = setup();
-  var directions = new MapboxDirections({
+  var directions = new TrackAsiaDirections({
     geocoder: {
       proximity: [-79.45, 43.65]
     }

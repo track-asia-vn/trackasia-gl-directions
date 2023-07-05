@@ -13,7 +13,8 @@ export default class Geocoder {
   constructor(options) {
     this._ev = new EventEmitter();
     this.options = options;
-    this.api = options && options.api || 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
+    // this.api = options && options.api || 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
+    this.api = options && options.api || 'https://maps.track-asia.com/api/v1';
   }
 
   onAdd(map) {
@@ -100,14 +101,31 @@ export default class Geocoder {
       return key + '=' + geocodingOptions[key];
     });
 
-    var accessToken = this.options.accessToken ? this.options.accessToken : mapboxgl.accessToken;
-    options.push('access_token=' + accessToken);
+    var accessToken = this.options.accessToken ? this.options.accessToken : null;
+    if (accessToken)
+      options.push('access_token=' + accessToken);
     this.request.abort();
-    this.request.open('GET', this.api + encodeURIComponent(q.trim()) + '.json?' + options.join('&'), true);
+    // this.request.open('GET', this.api + encodeURIComponent(q.trim()) + '.json?' + options.join('&'), true);
+    this.request.open('GET', this.api + '/search?text=' + encodeURIComponent(q.trim()) + '&' + options.join('&'), true);
     this.request.onload = function() {
       this._loadingEl.classList.remove('active');
       if (this.request.status >= 200 && this.request.status < 400) {
         var data = JSON.parse(this.request.responseText);
+        // supplement Mapbox Geocoding API results with locally populated results
+        
+        data.features = data.features.map(function (feature) {
+          feature.id = feature.properties.id;
+          feature.place_type = feature.properties.type;
+          feature.place_name = feature.properties.label;
+          feature.text = feature.properties.name;
+          feature.center = feature.geometry.coordinates;
+          feature.relevance = feature.properties.confidence;
+          // feature.center = feature.properties.coordinates;
+          // feature.center = feature.properties.coordinates;
+          // feature.center = feature.properties.coordinates;
+          return feature
+        });
+
         if (data.features.length) {
           this._clearEl.classList.add('active');
         } else {

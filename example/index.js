@@ -1,8 +1,8 @@
 'use strict';
-var mapboxgl = require('trackasia-gl');
+var trackasiagl = require('trackasia-gl');
 var insertCss = require('insert-css');
 var fs = require('fs');
-mapboxgl.accessToken = window.localStorage.getItem('MapboxAccessToken');
+trackasiagl.accessToken = window.localStorage.getItem('TrackAsiaAccessToken');
 
 // var directionsDiv = document.body.appendChild(document.createElement('div'));
 // directionsDiv.id = 'directions';
@@ -12,7 +12,7 @@ insertCss(fs.readFileSync('./node_modules/trackasia-gl/dist/trackasia-gl.css', '
 var mapDiv = document.body.appendChild(document.createElement('div'));
 mapDiv.style = 'position:absolute;top:0;right:0;left:0;bottom:0;';
 
-var map = window.map = new mapboxgl.Map({
+var map = window.map = new trackasiagl.Map({
   hash: true,
   container: mapDiv,
   style: 'mapbox://styles/mapbox/streets-v12',
@@ -31,11 +31,11 @@ removeWaypointsButton.style = 'z-index:10;position:absolute;top:30px;right:10px;
 removeWaypointsButton.textContent = 'Remove all waypoints';
 
 // directions
-var MapboxDirections = require('../src/index');
-var directions = new MapboxDirections({
-  accessToken: window.localStorage.getItem('MapboxAccessToken'),
+var TrackAsiaDirections = require('../src/index');
+var directions = new TrackAsiaDirections({
+  accessToken: window.localStorage.getItem('TrackAsiaAccessToken'),
   unit: 'metric',
-  profile: 'mapbox/cycling'
+  profile: 'drive'
 });
 window.directions = directions;
 

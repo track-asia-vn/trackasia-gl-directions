@@ -2,7 +2,7 @@
 
 ### Table of Contents
 
--   [MapboxDirections](#mapboxdirections)
+-   [TrackAsiaDirections](#mapboxdirections)
     -   [onRemove](#onremove)
     -   [interactive](#interactive)
     -   [getOrigin](#getorigin)
@@ -17,7 +17,7 @@
     -   [removeRoutes](#removeroutes)
     -   [on](#on)
 
-## MapboxDirections
+## TrackAsiaDirections
 
 The Directions control
 
@@ -25,10 +25,10 @@ The Directions control
 
 -   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
     -   `options.styles` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)?** Override default layer properties of the [directions source](https://github.com/mapbox/mapbox-gl-directions/blob/master/src/directions_style.js). Documentation for each property are specified in the [Mapbox GL Style Reference](https://www.mapbox.com/mapbox-gl-style-spec/).
-    -   `options.accessToken` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Required unless `mapboxgl.accessToken` is set globally (optional, default `null`)
+    -   `options.accessToken` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Required unless `trackasiagl.accessToken` is set globally (optional, default `null`)
     -   `options.api` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Override default routing endpoint url (optional, default `"https://api.mapbox.com/directions/v5/"`)
     -   `options.interactive` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable/Disable mouse or touch interactivity from the plugin (optional, default `true`)
-    -   `options.profile` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Routing profile to use. Options: `mapbox/driving-traffic`, `mapbox/driving`, `mapbox/walking`, `mapbox/cycling` (optional, default `"mapbox/driving-traffic"`)
+    -   `options.profile` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Routing profile to use. Options: `mapbox/driving-traffic`, `mapbox/driving`, `mapbox/walking`, `drive` (optional, default `"mapbox/driving-traffic"`)
     -   `options.alternatives` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether to enable alternatives. (optional, default `false`)
     -   `options.congestion` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether to enable congestion along the route line. (optional, default `false`)
     -   `options.unit` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Measurement system to be used in navigation instructions. Options: `imperial`, `metric` (optional, default `"imperial"`)
@@ -49,16 +49,16 @@ The Directions control
 **Examples**
 
 ```javascript
-var MapboxDirections = require('../src/index');
-var directions = new MapboxDirections({
+var TrackAsiaDirections = require('../src/index');
+var directions = new TrackAsiaDirections({
   unit: 'metric',
-  profile: 'mapbox/cycling'
+  profile: 'drive'
 });
-// add to your mapboxgl map
+// add to your trackasiagl map
 map.addControl(directions);
 ```
 
-Returns **[MapboxDirections](#mapboxdirections)** `this`
+Returns **[TrackAsiaDirections](#mapboxdirections)** `this`
 
 ### onRemove
 
@@ -79,7 +79,7 @@ Turn on or off interactivity
 
 -   `state` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** sets interactivity based on a state of `true` or `false`.
 
-Returns **[MapboxDirections](#mapboxdirections)** this
+Returns **[TrackAsiaDirections](#mapboxdirections)** this
 
 ### getOrigin
 
@@ -96,7 +96,7 @@ to have run.
 
 -   `query` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** An array of coordinates [lng, lat] or location name as a string.
 
-Returns **[MapboxDirections](#mapboxdirections)** this
+Returns **[TrackAsiaDirections](#mapboxdirections)** this
 
 ### getDestination
 
@@ -113,13 +113,13 @@ to have run.
 
 -   `query` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** An array of coordinates [lng, lat] or location name as a string.
 
-Returns **[MapboxDirections](#mapboxdirections)** this
+Returns **[TrackAsiaDirections](#mapboxdirections)** this
 
 ### reverse
 
 Swap the origin and destination.
 
-Returns **[MapboxDirections](#mapboxdirections)** this
+Returns **[TrackAsiaDirections](#mapboxdirections)** this
 
 ### addWaypoint
 
@@ -131,7 +131,7 @@ Add a waypoint to the route. _Note:_ calling this method requires the
 -   `index` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** position waypoint should be placed in the waypoint array
 -   `waypoint` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)> | Point)** can be a GeoJSON Point Feature or [lng, lat] coordinates.
 
-Returns **[MapboxDirections](#mapboxdirections)** this;
+Returns **[TrackAsiaDirections](#mapboxdirections)** this;
 
 ### setWaypoint
 
@@ -144,7 +144,7 @@ to have run.
 -   `index` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** indexed position of the waypoint to update
 -   `waypoint` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)> | Point)** can be a GeoJSON Point Feature or [lng, lat] coordinates.
 
-Returns **[MapboxDirections](#mapboxdirections)** this;
+Returns **[TrackAsiaDirections](#mapboxdirections)** this;
 
 ### removeWaypoint
 
@@ -154,7 +154,7 @@ Remove a waypoint from the route.
 
 -   `index` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** position in the waypoints array.
 
-Returns **[MapboxDirections](#mapboxdirections)** this;
+Returns **[TrackAsiaDirections](#mapboxdirections)** this;
 
 ### getWaypoints
 
@@ -166,7 +166,7 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 
 Removes all routes and waypoints from the map.
 
-Returns **[MapboxDirections](#mapboxdirections)** this;
+Returns **[TrackAsiaDirections](#mapboxdirections)** this;
 
 ### on
 
@@ -183,4 +183,4 @@ Subscribe to events that happen within the plugin.
     -   **error** `{ error } Error as string`
 -   `fn` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** function that's called when the event is emitted.
 
-Returns **[MapboxDirections](#mapboxdirections)** this;
+Returns **[TrackAsiaDirections](#mapboxdirections)** this;

@@ -17,14 +17,14 @@ import Instructions from './controls/instructions';
 
 /**
  * The Directions control
- * @class MapboxDirections
+ * @class TrackAsiaDirections
  *
  * @param {Object} options
  * @param {Array} [options.styles] Override default layer properties of the [directions source](https://github.com/mapbox/mapbox-gl-directions/blob/master/src/directions_style.js). Documentation for each property are specified in the [Mapbox GL Style Reference](https://www.mapbox.com/mapbox-gl-style-spec/).
- * @param {String} [options.accessToken=null] Required unless `mapboxgl.accessToken` is set globally
+ * @param {String} [options.accessToken=null] Required unless `trackasiagl.accessToken` is set globally
  * @param {String} [options.api="https://api.mapbox.com/directions/v5/"] Override default routing endpoint url
  * @param {Boolean} [options.interactive=true] Enable/Disable mouse or touch interactivity from the plugin
- * @param {String} [options.profile="mapbox/driving-traffic"] Routing profile to use. Options: `mapbox/driving-traffic`, `mapbox/driving`, `mapbox/walking`, `mapbox/cycling`
+ * @param {String} [options.profile="mapbox/driving-traffic"] Routing profile to use. Options: `mapbox/driving-traffic`, `mapbox/driving`, `mapbox/walking`, `drive`
  * @param {Boolean} [options.alternatives=false] Whether to enable alternatives.
  * @param {Boolean} [options.congestion=false] Whether to enable congestion along the route line.
  * @param {String} [options.unit="imperial"] Measurement system to be used in navigation instructions. Options: `imperial`, `metric`
@@ -42,18 +42,18 @@ import Instructions from './controls/instructions';
  * @param {String} [options.exclude=null] Exclude certain road types from routing. The default is to not exclude anything. Search for `exclude` in `optional parameters`: https://docs.mapbox.com/api/navigation/#retrieve-directions
  * @param {number | PaddingOptions} [options.routePadding=80] Specify padding surrounding route. A single number of pixels or a [PaddingOptions](https://docs.mapbox.com/mapbox-gl-js/api/#paddingoptions) object.
  * @example
- * var MapboxDirections = require('../src/index');
- * var directions = new MapboxDirections({
+ * var TrackAsiaDirections = require('../src/index');
+ * var directions = new TrackAsiaDirections({
  *   accessToken: 'YOUR-MAPBOX-ACCESS-TOKEN',
  *   unit: 'metric',
- *   profile: 'mapbox/cycling'
+ *   profile: 'drive'
  * });
- * // add to your mapboxgl map
+ * // add to your trackasiagl map
  * map.addControl(directions);
  *
- * @return {MapboxDirections} `this`
+ * @return {TrackAsiaDirections} `this`
  */
-export default class MapboxDirections {
+export default class TrackAsiaDirections {
 
   constructor(options) {
     this.actions = bindActionCreators(actions, store.dispatch);
@@ -404,7 +404,7 @@ export default class MapboxDirections {
   /**
    * Turn on or off interactivity
    * @param {Boolean} state sets interactivity based on a state of `true` or `false`.
-   * @returns {MapboxDirections} this
+   * @returns {TrackAsiaDirections} this
    */
   interactive(state) {
     if (state) {
@@ -438,7 +438,7 @@ export default class MapboxDirections {
    * Sets origin. _Note:_ calling this method requires the [map load event](https://www.mapbox.com/mapbox-gl-js/api/#Map.load)
    * to have run.
    * @param {Array<number>|String} query An array of coordinates [lng, lat] or location name as a string.
-   * @returns {MapboxDirections} this
+   * @returns {TrackAsiaDirections} this
    */
   setOrigin(query) {
     if (typeof query === 'string') {
@@ -462,7 +462,7 @@ export default class MapboxDirections {
    * Sets destination. _Note:_ calling this method requires the [map load event](https://www.mapbox.com/mapbox-gl-js/api/#Map.load)
    * to have run.
    * @param {Array<number>|String} query An array of coordinates [lng, lat] or location name as a string.
-   * @returns {MapboxDirections} this
+   * @returns {TrackAsiaDirections} this
    */
   setDestination(query) {
     if (typeof query === 'string') {
@@ -476,7 +476,7 @@ export default class MapboxDirections {
 
   /**
    * Swap the origin and destination.
-   * @returns {MapboxDirections} this
+   * @returns {TrackAsiaDirections} this
    */
   reverse() {
     this.actions.reverse();
@@ -488,7 +488,7 @@ export default class MapboxDirections {
    * [map load event](https://www.mapbox.com/mapbox-gl-js/api/#Map.load) to have run.
    * @param {Number} index position waypoint should be placed in the waypoint array
    * @param {Array<number>|Point} waypoint can be a GeoJSON Point Feature or [lng, lat] coordinates.
-   * @returns {MapboxDirections} this;
+   * @returns {TrackAsiaDirections} this;
    */
   addWaypoint(index, waypoint) {
     if (!waypoint.type) waypoint = utils.createPoint(waypoint, { id: 'waypoint' });
@@ -502,7 +502,7 @@ export default class MapboxDirections {
    * to have run.
    * @param {Number} index indexed position of the waypoint to update
    * @param {Array<number>|Point} waypoint can be a GeoJSON Point Feature or [lng, lat] coordinates.
-   * @returns {MapboxDirections} this;
+   * @returns {TrackAsiaDirections} this;
    */
   setWaypoint(index, waypoint) {
     if (!waypoint.type) waypoint = utils.createPoint(waypoint, { id: 'waypoint' });
@@ -513,7 +513,7 @@ export default class MapboxDirections {
   /**
    * Remove a waypoint from the route.
    * @param {Number} index position in the waypoints array.
-   * @returns {MapboxDirections} this;
+   * @returns {TrackAsiaDirections} this;
    */
   removeWaypoint(index) {
     const { waypoints } = store.getState();
@@ -532,7 +532,7 @@ export default class MapboxDirections {
   /**
    * Removes all routes and waypoints from the map.
    *
-   * @returns {MapboxDirections} this;
+   * @returns {TrackAsiaDirections} this;
    */
   removeRoutes() {
     this.actions.clearOrigin();
@@ -552,7 +552,7 @@ export default class MapboxDirections {
    * - __route__ `{ route } Fired when a route is updated`
    * - __error__ `{ error } Error as string`
    * @param {Function} fn function that's called when the event is emitted.
-   * @returns {MapboxDirections} this;
+   * @returns {TrackAsiaDirections} this;
    */
   on(type, fn) {
     this.actions.eventSubscribe(type, fn);

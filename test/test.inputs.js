@@ -14,14 +14,14 @@ test('Directions#inputControl', tt => {
 
   function setup(opts) {
     container = document.createElement('div');
-    map = new mapboxgl.Map({ container: container });
-    var MapboxDirections = require('..');
-    directions = new MapboxDirections(opts);
+    map = new trackasiagl.Map({ container: container });
+    var TrackAsiaDirections = require('..');
+    directions = new TrackAsiaDirections(opts);
     map.addControl(directions);
   }
 
   tt.test('profiles', (t) => {
-    setup({ profile: 'mapbox/cycling' });
+    setup({ profile: 'drive' });
     t.plan(3);
 
     var drivingEl = container.querySelector('#trackasia-directions-profile-driving');

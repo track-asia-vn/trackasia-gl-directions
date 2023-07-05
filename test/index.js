@@ -1,13 +1,13 @@
 'use strict';
 
 const test = require('tape');
-window.mapboxgl = require('trackasia-gl');
+window.trackasiagl = require('trackasia-gl');
 require('../src/index');
 
-mapboxgl.accessToken = process.env.MapboxAccessToken;
+trackasiagl.accessToken = process.env.TrackAsiaAccessToken;
 
-if (!mapboxgl.accessToken) {
-  throw new Error('No MapboxAccessToken environment variable set. Please run `export MapboxAccessToken=<your token> && npm test`');
+if (!trackasiagl.accessToken) {
+  throw new Error('No TrackAsiaAccessToken environment variable set. Please run `export TrackAsiaAccessToken=<your token> && npm test`');
   window.close();
   process.exit(0);
 }

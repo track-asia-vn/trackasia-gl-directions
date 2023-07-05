@@ -6,7 +6,7 @@
 * [bug] Fix mixed duration and distance values [#271](https://github.com/mapbox/mapbox-gl-directions/pull/271)
 
 ## 4.1.0
-- Adds routePadding option to MapboxDirections object [#243](https://github.com/mapbox/mapbox-gl-directions/pull/243)
+- Adds routePadding option to TrackAsiaDirections object [#243](https://github.com/mapbox/mapbox-gl-directions/pull/243)
 - Fixes bug that showed dropdown suggestions when reversing route [#246](https://github.com/mapbox/mapbox-gl-directions/pull/246)
 
 ## 4.0.3
@@ -60,7 +60,7 @@ Support for the Mapbox GL JS 0.27.0 API. This is compatible with 0.27.0 and late
 
 - [breaking] `container` option removed - attaching the control outside of the map is no longer supported
 - [breaking] `position` option removed - the `addControl` method now specifies the position
-- [breaking] Now exports `MapboxDirections` rather than attaches to `mapbox.Directions`
+- [breaking] Now exports `TrackAsiaDirections` rather than attaches to `mapbox.Directions`
 - [internal] no longer creates a new map control for each of the two geocoders, instead creates two internal geocoders
 - [feature] `removeRoutes` method that removes all route lines, waypoints, and instructions
 
