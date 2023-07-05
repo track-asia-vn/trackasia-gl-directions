@@ -1,7 +1,7 @@
 {
-  "name": "@mapbox/mapbox-gl-directions",
+  "name": "trackasia-gl-directions",
   "version": "4.1.1",
-  "description": "A mapboxgl plugin for the Mapbox Directions API",
+  "description": "A trackasiagl plugin for the TrackAsia Directions API",
   "main": "./src/index.js",
   "browserify": {
     "transform": [
@@ -17,19 +17,19 @@
     ]
   },
   "peerDependencies": {
-    "mapbox-gl": "^1 || ^2"
+    "trackasia-gl": "^1 || ^2"
   },
   "scripts": {
     "prepublish": "npm run build",
     "start": "NODE_ENV=development budo example/index.js:example/bundle.js --live",
-    "build": "NODE_ENV=production mkdir -p dist && browserify -s MapboxDirections src/index.js > dist/mapbox-gl-directions.js && cp src/mapbox-gl-directions.css dist",
+    "build": "NODE_ENV=production mkdir -p dist && browserify -s TrackAsiaDirections src/index.js > dist/trackasia-gl-directions.js && cp src/trackasia-gl-directions.css dist",
     "test": "NODE_ENV=test npm run lint && browserify test/index.js | smokestack -b firefox | tap-status",
     "docs": "documentation build src/directions.js --shallow --format=md > API.md",
     "lint": "eslint --no-eslintrc -c .eslintrc src"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/mapbox/mapbox-gl-directions.git"
+    "url": "git+ssh://git@github.com:track-asia/trackasia-gl-directions.git"
   },
   "keywords": [
     "directions",
@@ -37,12 +37,12 @@
     "osm",
     "gl"
   ],
-  "author": "Mapbox",
+  "author": "TrackAsia",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mapbox/mapbox-gl-directions/issues"
+    "url": "https://github.com/track-asia/trackasia-gl-directions/issues"
   },
-  "homepage": "https://github.com/mapbox/mapbox-gl-directions#readme",
+  "homepage": "https://github.com/track-asia/trackasia-gl-directions/issues#readme",
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@babel/eslint-parser": "^7.19.1",

@@ -50,7 +50,7 @@ workflows:
 defaults: &defaults
   docker:
     - image: cimg/node:18.12-browsers
-  working_directory: ~/mapbox-gl-directions
+  working_directory: ~/trackasia-gl-directions
 
 jobs:
   prepare:
@@ -68,7 +68,7 @@ jobs:
           root: ~/
           paths:
             - .ssh
-            - mapbox-gl-directions
+            - trackasia-gl-directions
 
   install-mbx-ci:
     <<: *defaults
@@ -76,7 +76,7 @@ jobs:
       - run:
           name: Install mbx-ci
           command: |
-            curl -Ls https://mapbox-release-engineering.s3.amazonaws.com/mbx-ci/latest/mbx-ci-linux-amd64 > ~/mbx-ci &&
+            curl -Ls https://trackasia-release-engineering.s3.amazonaws.com/mbx-ci/latest/mbx-ci-linux-amd64 > ~/mbx-ci &&
             chmod 755 ~/mbx-ci
       - persist_to_workspace:
           root: ~/
@@ -96,7 +96,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - mapbox-gl-directions/dist
+            - trackasia-gl-directions/dist
 
   lint:
     <<: *defaults
@@ -132,4 +132,4 @@ jobs:
           command: |
              ~/mbx-ci aws setup
       - run: >-
-          aws s3 cp --recursive --acl public-read dist s3://mapbox-gl-js/plugins/mapbox-gl-directions/$CIRCLE_TAG
+          aws s3 cp --recursive --acl public-read dist s3://trackasia-gl-js/plugins/trackasia-gl-directions/$CIRCLE_TAG

@@ -24,8 +24,8 @@ test('Directions#inputControl', tt => {
     setup({ profile: 'mapbox/cycling' });
     t.plan(3);
 
-    var drivingEl = container.querySelector('#mapbox-directions-profile-driving');
-    var cyclingEl = container.querySelector('#mapbox-directions-profile-cycling');
+    var drivingEl = container.querySelector('#trackasia-directions-profile-driving');
+    var cyclingEl = container.querySelector('#trackasia-directions-profile-cycling');
 
     t.equal(drivingEl.checked, false, 'default driving profile should is false');
     t.equal(cyclingEl.checked, true, 'cycling profile is active');

@@ -51,7 +51,6 @@ The Directions control
 ```javascript
 var MapboxDirections = require('../src/index');
 var directions = new MapboxDirections({
-  accessToken: 'YOUR-MAPBOX-ACCESS-TOKEN',
   unit: 'metric',
   profile: 'mapbox/cycling'
 });

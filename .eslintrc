@@ -5,7 +5,7 @@
     "browser": true
   },
   "globals": {
-    "mapboxgl": true,
+    "trackasiagl": true,
     "fs": true
   },
   "rules": {

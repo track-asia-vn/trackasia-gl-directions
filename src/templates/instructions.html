@@ -1,10 +1,10 @@
 <div class='directions-control directions-control-directions'>
-  <div class='mapbox-directions-component mapbox-directions-route-summary<% if (routes > 1) { %> mapbox-directions-multiple<% } %>'>
+  <div class='trackasia-directions-component trackasia-directions-route-summary<% if (routes > 1) { %> trackasia-directions-multiple<% } %>'>
     <% if (routes > 1) { %>
-    <div class='mapbox-directions-routes mapbox-directions-clearfix'>
+    <div class='trackasia-directions-routes trackasia-directions-clearfix'>
       <% for (var i = 0; i < routes; i++) { %>
         <input type='radio' name='routes' id='<%= i %>' <% if (i === routeIndex) { %>checked<% } %>>
-        <label for='<%= i %>' class='mapbox-directions-route'><%= i + 1 %></label>
+        <label for='<%= i %>' class='trackasia-directions-route'><%= i + 1 %></label>
       <% } %>
     </div>
     <% } %>
@@ -12,9 +12,9 @@
     <span><%- distance %></span>
   </div>
 
-  <div class='mapbox-directions-instructions'>
-    <div class='mapbox-directions-instructions-wrapper'>
-      <ol class='mapbox-directions-steps'>
+  <div class='trackasia-directions-instructions'>
+    <div class='trackasia-directions-instructions-wrapper'>
+      <ol class='trackasia-directions-steps'>
         <% steps.forEach(function(step) { %>
           <%
             var distance = step.distance ? format(step.distance) : false;
@@ -34,13 +34,13 @@
           <li
             data-lat='<%= lat %>'
             data-lng='<%= lng %>'
-            class='mapbox-directions-step'>
+            class='trackasia-directions-step'>
             <span class='directions-icon directions-icon-<%= icon %>'></span>
-            <div class='mapbox-directions-step-maneuver'>
+            <div class='trackasia-directions-step-maneuver'>
               <%= step.maneuver.instruction %>
             </div>
             <% if (distance) { %>
-              <div class='mapbox-directions-step-distance'>
+              <div class='trackasia-directions-step-distance'>
                 <%= distance %>
               </div>
             <% } %>

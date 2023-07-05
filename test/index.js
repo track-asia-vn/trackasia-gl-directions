@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('tape');
-window.mapboxgl = require('mapbox-gl');
+window.mapboxgl = require('trackasia-gl');
 require('../src/index');
 
 mapboxgl.accessToken = process.env.MapboxAccessToken;

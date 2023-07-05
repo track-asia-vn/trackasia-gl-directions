@@ -70,7 +70,7 @@ export default class Inputs {
     }, geocoder, {flyTo, placeholder: placeholderOrigin, zoom}));
 
     const originEl = this.originInput.onAdd(this._map);
-    const originContainerEl = this.container.querySelector('#mapbox-directions-origin-input');
+    const originContainerEl = this.container.querySelector('#trackasia-directions-origin-input');
     originContainerEl.appendChild(originEl);
 
     this.destinationInput = new Geocoder(Object.assign({}, {
@@ -78,7 +78,7 @@ export default class Inputs {
     }, geocoder, {flyTo, placeholder: placeholderDestination, zoom}));
 
     const destinationEl = this.destinationInput.onAdd(this._map);
-    this.container.querySelector('#mapbox-directions-destination-input').appendChild(destinationEl);
+    this.container.querySelector('#trackasia-directions-destination-input').appendChild(destinationEl);
 
     this.originInput.on('result', (e) => {
       const coords = e.result.center;

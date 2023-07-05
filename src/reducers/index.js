@@ -3,7 +3,7 @@ import deepAssign from 'deep-assign';
 
 const initialState = {
   // Options set on initialization
-  api: 'https://api.mapbox.com/directions/v5/',
+  api: 'https://router.project-osrm.org/route/v1/',
   profile: 'mapbox/driving-traffic',
   alternatives: false,
   congestion: false,
@@ -24,7 +24,7 @@ const initialState = {
     instructions: true
   },
 
-  // Optional setting to pass options available to mapbox-gl-geocoder
+  // Optional setting to pass options available to trackasia-gl-geocoder
   geocoder: {},
 
   interactive: true,

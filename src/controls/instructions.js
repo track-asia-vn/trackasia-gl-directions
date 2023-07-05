@@ -56,7 +56,7 @@ export default class Instructions {
           distance: utils.format[unit](direction.distance)
         });
 
-        const steps = this.container.querySelectorAll('.mapbox-directions-step');
+        const steps = this.container.querySelectorAll('.trackasia-directions-step');
 
         Array.prototype.forEach.call(steps, (el) => {
           const lng = el.getAttribute('data-lng');
