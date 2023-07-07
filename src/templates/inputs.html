@@ -21,22 +21,15 @@
   </div>
 
   <% if (controls.profileSwitcher) { %>
-  <div class='trackasia-directions-profile trackasia-directions-component-keyline trackasia-directions-clearfix'><input
-      id='trackasia-directions-profile-driving-traffic'
-      type='radio'
-      name='profile'
-      value='driving-traffic'
-      <% if (profile === 'driving-traffic') { %>checked<% } %>
-    />
-    <label for='trackasia-directions-profile-driving-traffic'>Traffic</label>
+  <div class='trackasia-directions-profile trackasia-directions-component-keyline trackasia-directions-clearfix'>
     <input
-      id='trackasia-directions-profile-driving'
+      id='trackasia-directions-profile-car'
       type='radio'
       name='profile'
-      value='driving'
-      <% if (profile === 'driving') { %>checked<% } %>
+      value='car'
+      <% if (profile === 'car') { %>checked<% } %>
     />
-    <label for='trackasia-directions-profile-driving'>Driving</label>
+    <label for='trackasia-directions-profile-driving'>Ô tô</label>
     <input
       id='trackasia-directions-profile-walking'
       type='radio'
@@ -44,15 +37,15 @@
       value='walking'
       <% if (profile === 'walking') { %>checked<% } %>
     />
-    <label for='trackasia-directions-profile-walking'>Walking</label>
+    <label for='trackasia-directions-profile-walking'>Đi bộ</label>
     <input
       id='trackasia-directions-profile-cycling'
       type='radio'
       name='profile'
-      value='drive'
-      <% if (profile === 'drive') { %>checked<% } %>
+      value='bicycle'
+      <% if (profile === 'bicycle') { %>checked<% } %>
     />
-    <label for='trackasia-directions-profile-cycling'>Cycling</label>
+    <label for='trackasia-directions-profile-cycling'>Xe đạp</label>
   </div>
   <% } %>
 </div>
