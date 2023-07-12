@@ -24,7 +24,7 @@ test('Directions#inputControl', tt => {
     setup({ profile: 'drive' });
     t.plan(3);
 
-    var drivingEl = container.querySelector('#trackasia-directions-profile-driving');
+    var drivingEl = container.querySelector('#trackasia-directions-profile-car');
     var cyclingEl = container.querySelector('#trackasia-directions-profile-cycling');
 
     t.equal(drivingEl.checked, false, 'default driving profile should is false');
