@@ -1,6 +1,6 @@
 {
   "name": "trackasia-gl-directions",
-  "version": "4.1.6",
+  "version": "4.1.7",
   "description": "A trackasiagl plugin for the TrackAsia Directions API",
   "main": "./src/index.js",
   "browserify": {
