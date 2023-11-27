@@ -106,7 +106,7 @@ export default class Geocoder {
       options.push('access_token=' + accessToken);
     this.request.abort();
     // this.request.open('GET', this.api + encodeURIComponent(q.trim()) + '.json?' + options.join('&'), true);
-    this.request.open('GET', this.api + '/search?text=' + encodeURIComponent(q.trim()) + '&' + options.join('&'), true);
+    this.request.open('GET', this.api + '/autocomplete?text=' + encodeURIComponent(q.trim()) + '&' + options.join('&'), true);
     this.request.onload = function() {
       this._loadingEl.classList.remove('active');
       if (this.request.status >= 200 && this.request.status < 400) {
