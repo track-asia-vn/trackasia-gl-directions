@@ -63,6 +63,10 @@ export default class Geocoder {
       }
     }.bind(this));
 
+    input.addEventListener('paste', function(e) {
+      this._queryFromInput(e.clipboardData.getData('text'));
+    }.bind(this))
+
     var actions = document.createElement('div');
     actions.classList.add('geocoder-pin-right');
 
@@ -106,13 +110,20 @@ export default class Geocoder {
       options.push('access_token=' + accessToken);
     this.request.abort();
     // this.request.open('GET', this.api + encodeURIComponent(q.trim()) + '.json?' + options.join('&'), true);
-    this.request.open('GET', this.api + '/autocomplete?text=' + encodeURIComponent(q.trim()) + '&' + options.join('&'), true);
+    const [lat, long] = this._splitLatLong(q.trim());
+
+    const isValidLatLong = this._validLatLong(q.trim());
+    if(isValidLatLong) {
+      this.request.open('GET', this.api + `/reverse?lang=vi&point.lon=${long}&point.lat=${lat}&size=1`, true);
+    }else {
+      this.request.open('GET', this.api + '/autocomplete?text=' + encodeURIComponent(q.trim()) + '&' + options.join('&'), true);
+    }
     this.request.onload = function() {
       this._loadingEl.classList.remove('active');
       if (this.request.status >= 200 && this.request.status < 400) {
         var data = JSON.parse(this.request.responseText);
         // supplement Mapbox Geocoding API results with locally populated results
-        
+
         data.features = data.features.map(function (feature) {
           feature.id = feature.properties.id;
           feature.place_type = feature.properties.type;
@@ -158,7 +169,22 @@ export default class Geocoder {
       }.bind(this));
     }
   }
+  _validLatLong(coordinates) {
+    var regex =
+        /^(-?([1-8]?\d(\.\d+)?|90(\.0+)?)[, ]\s*(-?([1-9]\d|[1-8]\d(\.\d+)?|1[0-7]\d(\.\d+)?|180(\.0+)?))|(-?([1-9]\d|[1-8]\d(\.\d+)?|1[0-7]\d(\.\d+)?|180(\.0+)?)[, ]\s*(-?([1-8]?\d(\.\d+)?|90(\.0+)?))))$/;
+    if(regex.test(coordinates)) {
+      return true;
+    }
+    return false;
+  }
 
+  _splitLatLong (coordinates) {
+    const result = coordinates.split(/[,]\s*|\s+/);
+    const [lat, long] = result.sort(
+        (a, b) => parseFloat(a) - parseFloat(b)
+    );
+    return [lat, long];
+  }
   _change() {
     var onChange = document.createEvent('HTMLEvents');
     onChange.initEvent('change', true, false);
