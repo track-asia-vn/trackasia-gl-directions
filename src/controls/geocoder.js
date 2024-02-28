@@ -232,6 +232,8 @@ export default class Geocoder {
     this._inputEl.value = '';
     this._typeahead.selected = null;
     this._typeahead.clear();
+    this._typeahead.list.element.style.visibility = null;
+    this._typeahead.list.draw();
     this._change();
     this._inputEl.focus();
     this._clearEl.classList.remove('active');
