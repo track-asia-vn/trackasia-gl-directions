@@ -16,7 +16,7 @@ var map = window.map = new trackasiagl.Map({
   hash: true,
   container: mapDiv,
   style: 'https://tiles.track-asia.com/tiles/v1/style-streets.json?key=public',
-  center: [10, 110],
+  center: [106.66, 10.76],
   zoom: 5
 });
 
