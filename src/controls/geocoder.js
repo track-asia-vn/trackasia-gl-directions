@@ -114,7 +114,7 @@ export default class Geocoder {
 
     const isValidLatLong = this._validLatLong(q.trim());
     if(isValidLatLong) {
-      this.request.open('GET', this.api + `/reverse?lang=vi&point.lon=${long}&point.lat=${lat}&size=1`, true);
+      this.request.open('GET', this.api + `/reverse?point.lon=${long}&point.lat=${lat}&size=1&boundary.circle.radius=0.01`, true);
     }else {
       this.request.open('GET', this.api + '/autocomplete?text=' + encodeURIComponent(q.trim()) + '&' + options.join('&'), true);
     }
@@ -232,6 +232,8 @@ export default class Geocoder {
     this._inputEl.value = '';
     this._typeahead.selected = null;
     this._typeahead.clear();
+    this._typeahead.list.element.style.visibility = null;
+    this._typeahead.list.draw();
     this._change();
     this._inputEl.focus();
     this._clearEl.classList.remove('active');
