@@ -114,7 +114,7 @@ export default class Geocoder {
 
     const isValidLatLong = this._validLatLong(q.trim());
     if(isValidLatLong) {
-      this.request.open('GET', this.api + `/reverse?lang=vi&point.lon=${long}&point.lat=${lat}&size=1`, true);
+      this.request.open('GET', this.api + `/reverse?point.lon=${long}&point.lat=${lat}&size=1`, true);
     }else {
       this.request.open('GET', this.api + '/autocomplete?text=' + encodeURIComponent(q.trim()) + '&' + options.join('&'), true);
     }
