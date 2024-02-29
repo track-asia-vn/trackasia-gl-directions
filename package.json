@@ -1,6 +1,6 @@
 {
   "name": "trackasia-gl-directions",
-  "version": "4.1.9",
+  "version": "4.2.1",
   "description": "A trackasiagl plugin for the TrackAsia Directions API",
   "main": "./src/index.js",
   "browserify": {
@@ -20,12 +20,13 @@
     "trackasia-gl": "^1 || ^2"
   },
   "scripts": {
-    "prepublish": "npm run build",
-    "start": "NODE_ENV=development budo example/index.js:example/bundle.js --live",
+    "prepublish": "npm run build  && bash skip-warning.sh",
+    "start": "NODE_ENV=production budo example/index.js:example/bundle.js --live",
     "build": "NODE_ENV=production mkdir -p dist && browserify -s TrackAsiaDirections src/index.js > dist/trackasia-gl-directions.js && cp src/trackasia-gl-directions.css dist",
     "test": "NODE_ENV=test npm run lint && browserify test/index.js | smokestack -b firefox | tap-status",
     "docs": "documentation build src/directions.js --shallow --format=md > API.md",
-    "lint": "eslint --no-eslintrc -c .eslintrc src"
+    "lint": "eslint --no-eslintrc -c .eslintrc src",
+    "publish": "npm publish"
   },
   "repository": {
     "type": "git",

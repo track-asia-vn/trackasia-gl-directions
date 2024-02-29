@@ -50,6 +50,15 @@ map.addControl(directions, 'top-left');
 ```
 Live example: https://docs.track-asia.com/example/direction-between-two-points/
 
+### Flow publish to npm
+- **B1**: **Build the project and skip warning redux in production**:
+  ```json
+    npm run prepublish
+  ```
+- **B2**: **Pusblish to npm. Note: check version again. Example current version: 4.1.9 after publishing it is 4.2.0**
+  ```json
+    npm run publish
+  ```
 ### Deeper dive
 
 See [API.md](https://github.com/track-asia/trackasia-gl-directions/blob/master/API.md) for complete reference.
