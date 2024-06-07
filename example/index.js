@@ -12,10 +12,10 @@ insertCss(fs.readFileSync('./node_modules/trackasia-gl/dist/trackasia-gl.css', '
 var mapDiv = document.body.appendChild(document.createElement('div'));
 mapDiv.style = 'position:absolute;top:0;right:0;left:0;bottom:0;';
 
-var map = window.map = new trackasiagl.Map({
+var map = new trackasiagl.Map({
   hash: true,
   container: mapDiv,
-  style: 'https://tiles.track-asia.com/tiles/v1/style-streets.json?key=public',
+  style: 'https://maps.track-asia.vn/tiles/style-streets.json?key=public_key',
   center: [106.66, 10.76],
   zoom: 5
 });
@@ -33,9 +33,14 @@ removeWaypointsButton.textContent = 'Remove all waypoints';
 // directions
 var TrackAsiaDirections = require('../src/index');
 var directions = new TrackAsiaDirections({
-  accessToken: window.localStorage.getItem('TrackAsiaAccessToken'),
+  api: 'https://maps.track-asia.vn/route/v1/',
+  apiKey: 'public_key',
   unit: 'metric',
-  profile: 'drive'
+  profile: 'car',
+  geocoder: {
+    api: 'https://maps.track-asia.vn/api/v1',
+    key: 'public_key',
+  },
 });
 window.directions = directions;
 
