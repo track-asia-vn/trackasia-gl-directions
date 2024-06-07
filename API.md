@@ -2,20 +2,20 @@
 
 ### Table of Contents
 
--   [TrackAsiaDirections](#mapboxdirections)
-    -   [onRemove](#onremove)
-    -   [interactive](#interactive)
-    -   [getOrigin](#getorigin)
-    -   [setOrigin](#setorigin)
-    -   [getDestination](#getdestination)
-    -   [setDestination](#setdestination)
-    -   [reverse](#reverse)
-    -   [addWaypoint](#addwaypoint)
-    -   [setWaypoint](#setwaypoint)
-    -   [removeWaypoint](#removewaypoint)
-    -   [getWaypoints](#getwaypoints)
-    -   [removeRoutes](#removeroutes)
-    -   [on](#on)
+- [TrackAsiaDirections](#trackasiadirections)
+  - [onRemove](#onremove)
+  - [interactive](#interactive)
+  - [getOrigin](#getorigin)
+  - [setOrigin](#setorigin)
+  - [getDestination](#getdestination)
+  - [setDestination](#setdestination)
+  - [reverse](#reverse)
+  - [addWaypoint](#addwaypoint)
+  - [setWaypoint](#setwaypoint)
+  - [removeWaypoint](#removewaypoint)
+  - [getWaypoints](#getwaypoints)
+  - [removeRoutes](#removeroutes)
+  - [on](#on)
 
 ## TrackAsiaDirections
 
@@ -27,6 +27,7 @@ The Directions control
     -   `options.styles` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)?** Override default layer properties of the [directions source](https://github.com/mapbox/mapbox-gl-directions/blob/master/src/directions_style.js). Documentation for each property are specified in the [Mapbox GL Style Reference](https://www.mapbox.com/mapbox-gl-style-spec/).
     -   `options.accessToken` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Required unless `trackasiagl.accessToken` is set globally (optional, default `null`)
     -   `options.api` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Override default routing endpoint url (optional, default `"https://api.mapbox.com/directions/v5/"`)
+    -   `options.apiKey` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Routing endpoint url query parameter `key` (optional)
     -   `options.interactive` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Enable/Disable mouse or touch interactivity from the plugin (optional, default `true`)
     -   `options.profile` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Routing profile to use. Options: `mapbox/driving-traffic`, `mapbox/driving`, `mapbox/walking`, `drive` (optional, default `"mapbox/driving-traffic"`)
     -   `options.alternatives` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether to enable alternatives. (optional, default `false`)
