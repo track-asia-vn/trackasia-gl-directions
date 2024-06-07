@@ -93,31 +93,42 @@ export default class Geocoder {
     return el;
   }
 
+  _queryParameters(params = {}) {
+    const geocodingOptions = { ...this.options, ...params }
+    const exclude = ['placeholder', 'zoom', 'flyTo', 'accessToken', 'api'];
+    const queryParameters = []
+
+    for (const [key, value] of Object.entries(geocodingOptions)) {
+      if (!exclude.includes(key)) queryParameters.push(`${key}=${value}`)
+    }
+
+    if (this.options.accessToken)
+      queryParameters.push('access_token=' + this.options.accessToken);
+
+    return queryParameters.join('&');
+  }
+
   _geocode(q, callback) {
     this._loadingEl.classList.add('active');
     this.fire('loading');
 
-    const geocodingOptions = this.options
-    const exclude = ['placeholder', 'zoom', 'flyTo', 'accessToken', 'api'];
-    const options = Object.keys(this.options).filter(function(key) {
-      return exclude.indexOf(key) === -1;
-    }).map(function(key) {
-      return key + '=' + geocodingOptions[key];
-    });
-
-    var accessToken = this.options.accessToken ? this.options.accessToken : null;
-    if (accessToken)
-      options.push('access_token=' + accessToken);
     this.request.abort();
     // this.request.open('GET', this.api + encodeURIComponent(q.trim()) + '.json?' + options.join('&'), true);
-    const [lat, long] = this._splitLatLong(q.trim());
 
     const isValidLatLong = this._validLatLong(q.trim());
+
     if(isValidLatLong) {
-      this.request.open('GET', this.api + `/reverse?point.lon=${long}&point.lat=${lat}&size=1&boundary.circle.radius=0.01`, true);
-    }else {
-      this.request.open('GET', this.api + '/autocomplete?text=' + encodeURIComponent(q.trim()) + '&' + options.join('&'), true);
+      const [lat, long] = this._splitLatLong(q.trim());
+      let customParams = { 'point.lon': long, 'point.lat': lat, 'size': 1, 'boundary.circle.radius': 0.01 }
+      let queryParameters = this._queryParameters(customParams);
+      this.request.open('GET', this.api + `/reverse?${queryParameters}`, true);
+
+    } else {
+      let customParams = { 'focus.point.lat': this._map.getCenter().lat, 'focus.point.lon': this._map.getCenter().lng }
+      let queryParameters = this._queryParameters(customParams);
+      this.request.open('GET', this.api + '/autocomplete?text=' + encodeURIComponent(q.trim()) + '&' + queryParameters, true);
     }
+
     this.request.onload = function() {
       this._loadingEl.classList.remove('active');
       if (this.request.status >= 200 && this.request.status < 400) {
