@@ -15,7 +15,7 @@ mapDiv.style = 'position:absolute;top:0;right:0;left:0;bottom:0;';
 var map = new trackasiagl.Map({
   hash: true,
   container: mapDiv,
-  style: 'https://maps.track-asia.vn/tiles/style-streets.json?key=public_key',
+  style: 'https://maps.track-asia.com/styles/v1/streets.json?key=public_key',
   center: [106.66, 10.76],
   zoom: 5
 });
