@@ -50,9 +50,16 @@ function setHoverMarker(feature) {
   };
 }
 
+function setPreDirectionsUrl(preDirectionsUrl) {
+  return {
+    type: types.PRE_DIRECTIONS_URL,
+    preDirectionsUrl: preDirectionsUrl
+  };
+}
+
 function fetchDirections() {
   return (dispatch, getState) => {
-    const { api, apiKey, accessToken, routeIndex, profile, alternatives, congestion, destination, language, exclude } = getState();
+    const { preDirectionsUrl, api, apiKey, accessToken, routeIndex, profile, alternatives, congestion, destination, language, exclude } = getState();
     // if there is no destination set, do not make request because it will fail
     if (!(destination && destination.geometry)) return;
 
@@ -69,8 +76,14 @@ function fetchDirections() {
     if (exclude) options.push('exclude=' + exclude);
     if (accessToken) options.push('access_token=' + accessToken);
     if (apiKey) options.push('key=' + apiKey);
+
+    const directionsUrl = `${api}${profile}/${query}.json?${options.join('&')}`
+
+    if (preDirectionsUrl === directionsUrl) return;
+
+    dispatch(setPreDirectionsUrl(directionsUrl))
     request.abort();
-    request.open('GET', `${api}${profile}/${query}.json?${options.join('&')}`, true);
+    request.open('GET', directionsUrl, true);
 
     request.onload = () => {
       if (request.status >= 200 && request.status < 400) {
@@ -90,8 +103,8 @@ function fetchDirections() {
         dispatch(setDirections(data.routes));
 
         // Revise origin / destination points
-        dispatch(originPoint(data.waypoints[0].location));
-        dispatch(destinationPoint(data.waypoints[data.waypoints.length - 1].location));
+        // dispatch(originPoint(data.waypoints[0].location));
+        // dispatch(destinationPoint(data.waypoints[data.waypoints.length - 1].location));
       } else {
         dispatch(setDirections([]));
         return dispatch(setError(JSON.parse(request.responseText).message));

@@ -133,6 +133,11 @@ function data(state = initialState, action) {
       error: action.error
     });
 
+  case types.PRE_DIRECTIONS_URL:
+    return Object.assign({}, state, {
+      preDirectionsUrl: action.preDirectionsUrl
+    });
+
   default:
     return state;
   }
