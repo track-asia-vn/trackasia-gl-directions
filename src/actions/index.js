@@ -57,6 +57,13 @@ function setPreDirectionsUrl(preDirectionsUrl) {
   };
 }
 
+function setWaypointsDirections(routeWaypoints) {
+  return {
+    type: types.ROUTE_WAYPOINTS,
+    routeWaypoints
+  };
+}
+
 function fetchDirections() {
   return (dispatch, getState) => {
     const { preDirectionsUrl, api, apiKey, accessToken, routeIndex, profile, alternatives, congestion, destination, language, exclude } = getState();
@@ -100,6 +107,7 @@ function fetchDirections() {
 
         dispatch(setError(null));
         if (!data.routes[routeIndex]) dispatch(setRouteIndex(0));
+        dispatch(setWaypointsDirections(data.waypoints));
         dispatch(setDirections(data.routes));
 
         // Revise origin / destination points

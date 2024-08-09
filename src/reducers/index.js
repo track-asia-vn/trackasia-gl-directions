@@ -138,6 +138,11 @@ function data(state = initialState, action) {
       preDirectionsUrl: action.preDirectionsUrl
     });
 
+  case types.ROUTE_WAYPOINTS:
+    return Object.assign({}, state, {
+      routeWaypoints: action.routeWaypoints
+    });
+
   default:
     return state;
   }

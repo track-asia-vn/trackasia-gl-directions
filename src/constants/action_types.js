@@ -15,3 +15,4 @@ export const ROUTE_INDEX = 'ROUTE_INDEX';
 export const SET_OPTIONS = 'SET_OPTIONS';
 export const WAYPOINTS = 'WAYPOINTS';
 export const PRE_DIRECTIONS_URL = 'PRE_DIRECTIONS_URL';
+export const ROUTE_WAYPOINTS = 'ROUTE_WAYPOINTS';

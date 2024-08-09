@@ -169,7 +169,8 @@ export default class TrackAsiaDirections {
         destination,
         hoverMarker,
         directions,
-        routeIndex
+        routeIndex,
+        routeWaypoints,
       } = store.getState();
 
       const geojson = {
@@ -241,6 +242,34 @@ export default class TrackAsiaDirections {
           }
 
         });
+
+        if (routeWaypoints && routeWaypoints.length >= 2) {
+          const birdWayOriginLine = {
+            geometry: {
+              type: 'LineString',
+              coordinates: [
+                origin.geometry.coordinates,
+                routeWaypoints[0].location,
+              ]
+            },
+            properties: {
+              route: 'bird-way'
+            }
+          };
+          const birdWayDestinationLine = {
+            geometry: {
+              type: 'LineString',
+              coordinates: [
+                routeWaypoints[routeWaypoints.length - 1].location,
+                destination.geometry.coordinates,
+              ]
+            },
+            properties: {
+              route: 'bird-way'
+            }
+          };
+          geojson.features.push(birdWayOriginLine, birdWayDestinationLine)
+        }
       }
 
       if (this._map.style && this._map.getSource('directions')) {

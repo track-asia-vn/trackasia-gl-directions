@@ -1,4 +1,24 @@
-const style = [{
+const style = [
+  {
+    'id': 'directions-bird-way',
+    'type': 'line',
+    'source': 'directions',
+    'layout': {
+      'line-cap': 'butt',
+      'line-join': 'round'
+    },
+    'paint': {
+      'line-color': '#255999',
+      'line-blur': 5,
+      'line-width': 7,
+      'line-dasharray': [1, 0.5]
+    },
+    'filter': [
+      'all',
+      ['in', '$type', 'LineString'],
+      ['in', 'route', 'bird-way']
+    ]
+  },{
   'id': 'directions-route-line-alt',
   'type': 'line',
   'source': 'directions',
