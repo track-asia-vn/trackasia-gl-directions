@@ -1,3 +1,7 @@
+## 4.3.0
+- [bug] Triple send api router when reverse origin and direction
+- [feat] Add bird way when origin or destination not match with directions
+
 ## 4.1.1
 
 - [bug] Exclude `options.api` from query params [#266](https://github.com/mapbox/mapbox-gl-directions/pull/266)
